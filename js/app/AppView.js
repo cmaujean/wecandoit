@@ -4,11 +4,13 @@ define(function(require, exports, module) {
     var Transform       = require('famous/core/Transform');
     var View            = require('famous/core/View');
 
+    var MenuView        = require('./MenuView');
     var PageView        = require('./PageView');
 
     function AppView() {
         View.apply(this, arguments);
 
+        _createMenuView.call(this);
         _createPageView.call(this);
     }
 
@@ -30,6 +32,15 @@ define(function(require, exports, module) {
 
         this._add(this.pageModifier).add(this.pageView);
         this.menuToggle = false;
+    }
+
+    function _createMenuView() {
+        this.menuView = new MenuView();
+        this.menuModifier = new Modifier({
+            transform: Transform.translate(0, 0, -1)
+        });
+
+        this._add(this.menuModifier).add(this.menuView);
     }
 
     AppView.prototype.toggleMenu = function() {
