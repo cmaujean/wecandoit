@@ -10,6 +10,8 @@ define(function(require, exports, module) {
         View.apply(this, arguments);
 
         _createHeaderView.call(this);
+
+        this._eventInput.pipe(this._eventOutput);
     }
 
     PageView.prototype = Object.create(View.prototype);
@@ -17,6 +19,8 @@ define(function(require, exports, module) {
 
     function _createHeaderView() {
         this.headerView = new HeaderView();
+
+        this.headerView.pipe(this);
 
         this._add(this.headerView);
     }
