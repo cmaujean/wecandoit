@@ -19,9 +19,9 @@ define(function(require, exports, module) {
 
     function _createPageView() {
         this.pageView = new PageView();
-        this.pageMod = new Modifier();
+        this.pageModifier = new Modifier();
 
-        this._add(this.pageMod).add(this.pageView);
+        this._add(this.pageModifier).add(this.pageView);
     }
 
     module.exports = AppView;
