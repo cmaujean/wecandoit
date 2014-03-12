@@ -4,14 +4,22 @@ define(function(require, exports, module) {
     var Transform       = require('famous/core/Transform');
     var View            = require('famous/core/View');
 
-    function MyView() {
+    var HeaderView      = require('./HeaderView');
+
+    function PageView() {
         View.apply(this, arguments);
+
+        _createHeaderView.call(this);
     }
 
-    MyView.prototype = Object.create(View.prototype);
-    MyView.prototype.constructor = MyView;
+    PageView.prototype = Object.create(View.prototype);
+    PageView.prototype.constructor = PageView;
 
-    MyView.DEFAULT_OPTIONS = {};
+    function _createHeaderView() {
+        this.headerView = new HeaderView();
 
-    module.exports = MyView;
+        this._add(this.headerView);
+    }
+
+    module.exports = PageView;
 });
