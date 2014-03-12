@@ -6,12 +6,27 @@ define(function(require, exports, module) {
 
     function StripView() {
         View.apply(this, arguments);
+
+        _createBacking.call(this);
     }
 
     StripView.prototype = Object.create(View.prototype);
     StripView.prototype.constructor = StripView;
 
     StripView.DEFAULT_OPTIONS = {};
+
+    function _createBacking() {
+        var backSurface = new Surface({
+            size: [300, 50],
+            properties: {
+                backgroundColor: 'black'
+            }
+        });
+
+        var backModifier = new Modifier();
+
+        this._add(backModifier).add(backSurface);
+    }
 
     module.exports = StripView;
 });
