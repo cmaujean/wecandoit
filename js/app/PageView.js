@@ -10,6 +10,7 @@ define(function(require, exports, module) {
         View.apply(this, arguments);
 
         _createHeaderView.call(this);
+        _createBody.call(this);
 
         this._eventInput.pipe(this._eventOutput);
     }
@@ -23,6 +24,21 @@ define(function(require, exports, module) {
         this.headerView.pipe(this);
 
         this._add(this.headerView);
+    }
+
+    function _createBody() {
+        this.bodySurface = new Surface({
+            size: [320, 504],
+            content: '<img width="320" src="../img/body.png"/>'
+        });
+
+        this.bodyModifier = new Modifier({
+            transform: Transform.translate(0, 44, 0)
+        });
+
+        this.bodySurface.pipe(this);
+
+        this._add(this.bodyModifier).add(this.bodySurface);
     }
 
     module.exports = PageView;
